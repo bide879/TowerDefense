@@ -12,6 +12,8 @@ public class EnemyHp : MonoBehaviour
     private Eneny enemy;
     private SpriteRenderer spriteRenderer;
 
+    Spowner spowner;
+
     public float MaxHP => maxHP;
     public float CurrentHP => currentHP;
 
@@ -31,10 +33,11 @@ public class EnemyHp : MonoBehaviour
         StopCoroutine("HitAlphaAnimation");
         StartCoroutine("HitAlphaAnimation");
 
-        if(currentHP <= 0)
+        if (currentHP <= 0)
         {
             isDie = true;
             enemy.OnDie(EnemyDestoryType.kill);
+
         }
 
     }

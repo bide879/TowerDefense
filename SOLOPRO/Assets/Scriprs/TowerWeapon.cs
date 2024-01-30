@@ -10,8 +10,6 @@ public class TowerWeapon : MonoBehaviour
     [SerializeField]
     private Transform spawnPoint;
     [SerializeField]
-    private float attackRate = 0.5f;
-    [SerializeField]
     private float attackRange = 2.0f;
     [SerializeField]
     private int attackDamage = 1;

@@ -6,7 +6,15 @@ public class TowerSpowner : MonoBehaviour
 {
 
     [SerializeField]
-    private GameObject towerPrefab;
+    private GameObject towerPrefab1;
+    [SerializeField]
+    private GameObject towerPrefab2;
+    [SerializeField]
+    private GameObject towerPrefab3;
+    [SerializeField]
+    private GameObject towerPrefab4;
+
+
     [SerializeField]
     private int towerBuildGold = 50;
     [SerializeField]
@@ -14,8 +22,14 @@ public class TowerSpowner : MonoBehaviour
     [SerializeField]
     private Spowner Spowner;
 
+    GameObject towerPrefab;
+
+    int TowerBuildGold;
     public void SpownTower(Transform tileTransform)
     {
+        towerPrefab = towerPrefab1;
+        TowerBuildGold = towerBuildGold;
+
         if (towerBuildGold > playerGold.CurrentGold)
         {
             return;
@@ -26,12 +40,34 @@ public class TowerSpowner : MonoBehaviour
 
         if (tile.IsBuildTower == true)
         {
-            return;
+            if (towerBuildGold + 19 < playerGold.CurrentGold && tile.Lever == 0)
+            {
+                TowerBuildGold = towerBuildGold + 20;
+                towerPrefab = towerPrefab2;
+                tile.Lever++;
+            }
+            else if (towerBuildGold + 49 < playerGold.CurrentGold && tile.Lever == 1)
+            {
+                TowerBuildGold = towerBuildGold + 50;
+                towerPrefab = towerPrefab3;
+                tile.Lever++;
+            }
+            else if (towerBuildGold + 99 < playerGold.CurrentGold && tile.Lever == 2)
+            {
+                TowerBuildGold = towerBuildGold + 100;
+                towerPrefab = towerPrefab4;
+                tile.Lever++;
+            }
+            else
+            {
+                return;
+            }
+           
         }
 
         tile.IsBuildTower = true;
 
-        playerGold.CurrentGold -= towerBuildGold;
+        playerGold.CurrentGold -= TowerBuildGold;
 
         //Instantiate(towerPrefab, tileTransform.position, Quaternion.identity);
 

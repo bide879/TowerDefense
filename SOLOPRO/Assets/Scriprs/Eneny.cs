@@ -16,6 +16,7 @@ public class Eneny : MonoBehaviour
     [SerializeField]
     private int gold = 10;
 
+
     internal void Setup(Spowner spowner, Transform[] wayPoints)
     {
         move = GetComponent<Move>();
